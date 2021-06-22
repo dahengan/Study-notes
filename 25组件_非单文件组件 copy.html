@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <div id="root">
+        <School></School>
+        <hr/>
+        <Student></Student>
+    </div>
+    <!-- 
+        Vue中使用组件的三大步骤:
+        一、定义组件(创建组件)
+        二、注册组件
+        三、编写组件标签
+        
+        一、如何定义一个组件(创建组件)?
+        使用Vue.extend(options)创建，
+        传入的options和new Vue()时传入的那个options几乎一样，但也有点区别;
+        区别如下:
+        1.el不要写，为什么?——最终所有的组件都要经过一个vm的管理，由vm中的el决定服务哪个容器2.data必须写成函数，
+                   为什么?——避免组件多次复用时，数据存在引用关系
+        3.template属性可以配置组件结构
+        二、如何注册组件?
+        1。局部注册:靠new Vue时的候传入componenst
+        2.全局注册:靠Vue.component('组件名',组件)
+        
+        三、编写组件标签，有几种写法?
+        1.<School></School> --推荐2.<school/> --推荐
+        3.<school></ school>4.<school/>
+        备注:若脱离Vue脚手架,则自闭和组件标签有bug
+
+     -->
+    <script>
+        Vue.config.productionTip = false
+
+        //定义School组件
+        const School = Vue.extend({
+            template:`
+            <div>
+                <h2>学校名：{{name}}</h2>
+                <h2>学校地址：{{address}}</h2>
+                <h2>校长名：{{teacher}}</h2>
+                <button @click='tanchu'>点我提示班主任</button>
+            </div>
+            `,
+            data(){
+                return{
+                    name:'shangguigu',
+                    address:'beijing',
+                    teacher:'cc',
+                }
+            },
+            methods: {
+                tanchu(){
+                    alert(this.teacher)
+                }
+            },
+        })
+        
+        //定义Student学生组件
+        const Student = Vue.extend({
+            template:`
+            <div>
+                <h2>学生名：{{name}}</h2>
+                <h2>学生性别：{{sex}}</h2>
+                <h2>学生身高：{{height}}</h2>
+            </div>
+            `,
+             data(){
+                 return{
+                     name:'aa',
+                     sex:'girl',
+                     height:'170'
+                 }
+             }
+        })
+        new Vue({
+            el:"#root",
+            // 注册组件
+            components:{
+                School:School,
+                Student:Student
+            },
+           
+        })
+    </script>
+</body>
+</html>

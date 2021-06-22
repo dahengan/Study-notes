@@ -1,0 +1,23 @@
+插值表达式
+v-cloak ------解决插值表达式闪烁问题
+v-text
+v-html
+v-bind（缩写是 ：）
+v-on （缩写是 @）
+v-model
+v-for
+v-if - v-show
+事件修饰符：
+.stop(阻止冒泡)
+.prevent(阻止默认事件的发生) 
+.capture(捕获冒泡：有冒泡发生时，有该修饰符的dom元素会先执行，如果有多个从内到外依次执行，然后按自身顺序触发的事件)
+.self(将事件绑定到自身，只有自身才能够触发，通常用于避免冒泡事件的影响)
+.once(设置事件只能触发一次，如按钮等)
+
+在vue实例中 ，如果要访问data上的数据，或者要访问methods中的方法 ，必须带this
+
+在v-for中 要会使用key属性（key只接受 string/number）
+
+v-model只能用于表单元素
+
+在vue中绑定样式的两种方式 v-bind:class  v-bind:style

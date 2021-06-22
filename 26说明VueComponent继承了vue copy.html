@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <div id="root">
+        <School></School>
+        <hr/>
+        <Student></Student>
+    </div>
+    <!-- 
+        必须要知道的一个关系:
+        VueComponent继承了Vue，所以Vue.prototype上的属性和方法，vc都能看得见.！！！
+
+
+     -->
+    <script>
+        Vue.config.productionTip = false
+
+        //定义School组件
+        const School = Vue.extend({
+            template:`
+           
+            `,
+            data(){
+                return{
+                    name:'shangguigu',
+                    address:'beijing',
+                    teacher:'cc',
+                }
+            },
+            methods: {
+                tanchu(){
+                    alert(this.teacher)
+                }
+            },
+        })
+        
+        //定义Student学生组件
+        const Student = Vue.extend({
+            template:`
+            <div>
+                <h2>学生名：{{name}}</h2>
+                <h2>学生性别：{{sex}}</h2>
+                <h2>学生身高：{{height}}</h2>
+            </div>
+            `,
+             data(){
+                 return{
+                     name:'aa',
+                     sex:'girl',
+                     height:'170'
+                 }
+             }
+        })
+        new Vue({
+            el:"#root",
+            // 注册组件
+            components:{
+                School:School,
+                Student:Student
+            },
+           
+        })
+    </script>
+</body>
+</html>

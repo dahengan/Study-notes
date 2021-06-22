@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>{{msg|msgFormat }}</p>
+    </div>
+    <div id="app2">
+        <h3 v-color="'blue'" v-fontsize="50">{{msg | msgFormat}}</h3>
+    </div>
+    <script>
+        // 定义一个 vue 全局过滤器 名字叫做msgFormat
+        // 过滤器语法  Vue.filter（'过滤器的名称',function(){}）
+        Vue.filter("msgFormat",function(msg,str){
+            // 字符串的 replice方法，第一个参数，除了可写第一个字符串之外  还可以定义一个正则
+            return msg.replace("超人", "灭霸")
+        });
+        
+
+         let app = new Vue({
+            el:"#app",
+            data:{
+                msg:"卡卡罗特大战超人"
+            },
+            methods:{
+
+            }
+        })
+
+        let app2 = new Vue({
+            el:"#app2",
+            data:{
+                msg:"这是一个私有过滤器啊啊啊"
+            },
+            methods:{
+
+            },
+            filters:{
+                // 定义私有过滤器
+                // 过滤器有两个条件 【过滤名称和处理函数】
+                // 过滤器调用的时候采用的是就近原则，如果私有过滤器和全局过滤器名称一致，优先调用私有过滤器
+                msgFormat:function (msg) {
+                    return msg.replace('啊啊啊' , '呀呀呀')
+                }
+            },
+            directives:{ //设置字体粗细
+                'color':{
+                    bind:function(el,binding) {
+                        el.style.color = binding.value
+                    }
+                },
+                'fontsize':function (el,binding) { // 注意：这个function等同于把代码写到bind和update中去
+                    el.style.fontSize = binding.value + 'px'
+                }
+            }
+
+        })
+    </script>
+</body>
+</html>

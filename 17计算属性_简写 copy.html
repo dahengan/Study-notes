@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<br>
+    <div id="root">
+        姓：<input type="text" v-model="firstName"><br/>
+        名：<input type="text" v-model="lastName"><br/>
+        姓名：<input type="text" v-model="fullName">
+    </div>
+    <script>
+        Vue.config.productionTip = false
+        const root = new Vue({
+            el:"#root",
+            data:{
+                firstName:'张',
+                lastName:'三'
+            },
+            // 当计算属性只用于读取，不会被修改，才可以简写（只需要get方法，不需要set的时候）才可以简写
+            computed:{
+                fullName(){
+                    return this.firstName + '-' + this.lastName;
+                }
+            }    
+        })
+    </script>
+</body>
+</html>

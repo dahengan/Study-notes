@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        姓：<input type="text" v-model="firstName"><br/>
+        名：<input type="text" v-model="lastName"><br/>
+        姓名：<input type="text" v-model="fullName">
+    </div>
+    <!-- 
+        computed和lwatch之间的区别:
+        1.只要是compute能完成的功能，watch都可以完成
+        2.watch能完成的功能，computed不一定能完成，例如: watch可以进行异步操作
+        1.所被Vue管理的函数，this的指向是vm或组件实例对象。
+        ⒉.所有不被Vue所管理的函数（定时器的回调函数、ajax的回调函数、Promise的回调函数)，最好写成箭头函数.
+
+     -->
+    <script>
+        Vue.config.productionTip = false
+        const root = new Vue({
+            el:"#root",
+            data:{
+                firstName:'张',
+                lastName:'三',
+                fullName:''
+            },
+            watch:{
+                firstName:{
+                    immediate:true,
+                    handler(value){
+                        setTimeout(()=>{
+                            this.fullName = value + '-' + this.lastName
+                        },1000)    
+                    }
+                },
+                lastName(value){
+                     this.fullName = this.firstName + '-' + value 
+                 },
+                fullName(value){
+                    const arr = value.split('-')
+                    this.firstName = arr[0]
+                    this.lastName = arr[1]
+                 }
+            }
+        })
+    </script>
+</body>
+</html>

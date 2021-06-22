@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <div id="root">
+       <h2 v-upper-text='msg'>123</h2>
+       <h2></h2>
+    </div>
+    <!-- 
+
+     -->
+    <script>
+        Vue.config.productionTip = false
+
+        // 全局定义
+        Vue.directive('upper-text',function(element,directiveObj){
+            element.innerText += directiveObj.value.toUpperCase()
+        })
+
+
+        new Vue({
+            el:'#root',
+            data:{
+                msg:'aYguiGU',
+            },
+
+            //局部定义
+            directives:{
+                'upper-text'(element,directiveObj){
+                    element.innerText += directiveObj.value.toUpperCase()
+                }
+            }
+        })
+        
+    </script>
+</body>
+</html>

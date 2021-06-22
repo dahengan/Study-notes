@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .inner{
+            width: 100px;
+            height: 100px;
+            background: pink;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- <div class="inner" @click="divHandler">
+            <input type="button" value="戳我" @click.stop="btnHandler">
+        </div> -->
+        <div class="inner" @click.self="divHandler">
+            <input type="button" value="戳我" @click="btnHandler">
+        </div>
+        <a href="https://www.baidu.com/" @click.prevent.once="aHandler">有问题，去百度</a>
+    </div>
+    <script>
+        // .stop阻止冒泡
+        // .prevent阻止默认事件
+        // .capture添加事件侦听器时使用事件捕获模式
+        // .self 只当事件在该元素本身(比如不是子元素)触发时触发回调.once事件只触发—次
+        // .stop阻止全部事件冒泡，self只会阻止自身冒泡行为的触发，并不会真正阻止冒泡行为
+        let app = new Vue({
+            el:"#app", 
+            data:{},
+            methods:{
+                divHandler(){
+                    console.log("这是触发了inner点击事件")
+                },
+                btnHandler(){
+                    console.log("这是触发了btn点击事件")
+                },
+                aHandler(){
+                    console.log("这是触发了a点击事件")
+                }
+
+            }
+        })
+    </script>
+</body>
+</html>

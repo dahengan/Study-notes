@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h2>今天天气很{{isHot ? '炎热' : '凉爽'}}</h2>
+        <button @click='changeWeather'>切换天气</button>
+    </div>
+    <script>
+        Vue.config.productionTip = false
+        const root = new Vue({
+            el:"#root",
+            data:{
+                isHot:true
+            },
+            methods: {
+                changeWeather(){
+                    this.isHot = !this.isHot
+                }
+            }, 
+        })
+        // 对象写法
+        // root.$watch('isHot',{
+        //     immediate:true,
+        //     handler(n,o){
+        //         console.log('isHot被修改了',n,o)
+        //     }
+        // })
+        // 函数写法（简写）
+        root.$watch('isHot',function(n,o){
+            console.log('isHot被修改了',n,o)
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <div id="root">
+        <h2 id="h2">当前求和为{{sum}}</h2>
+        <button @click='add'>点我+1</button>
+        <button @click='death'>销毁</button>
+    </div>
+    <script>
+        Vue.config.productionTip = false
+        new Vue({
+            el:"#root",
+            data:{
+               sum:0
+            },
+            methods: {
+                add(){
+                    this.sum += 1;
+                },
+                death(){
+                    this.$destroy()
+                }
+            },
+            // 初始化之前
+            beforeCreate() {
+                console.log('beforCreate')
+                // this.teacher = 'cc'
+                // debugger;
+            },
+            //初始化完毕
+            created() {
+                console.log('created')
+                // console.log(this)
+                // debugger;
+            },
+            //挂载之前
+            beforeMount() {
+                console.log('beforeMount')
+                // const h2 = document.getElementById('h2')
+                // h2.innerText = 'haha'
+                // debugger;
+            },
+            // 挂载完毕
+            mounted() {
+                console.log('beforeMount')
+            //     const h2 = document.getElementById('h2')
+            //     h2.innerText = 'haha'
+            //     debugger;
+            },
+            // 将要销毁
+            beforeDestroy() {
+                console.log('beforDestroy')
+                // console.log(this)
+                // debugger;
+            },
+
+        })
+    </script>
+</body>
+</html>

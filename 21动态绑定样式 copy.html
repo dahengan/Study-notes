@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .atguigu{
+            border: 2px solid black;
+        }
+        .demo1{
+            background-color: skyblue;
+        }
+        .demo2{
+            color: rgb(214, 3, 2);
+        }
+        .demo3{
+            text-shadow: 2px 2px 2px yellow;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <!--动态绑定class的字符串写法，适用于:要绑定样式名，但具体的名不知道-->
+        <h2 class="atguigu" :class='t1'>HELLO</h2>
+
+        <!--动态绑定class的数组写法，适用于:同时绑定多个class -->
+        <h2 class="atguigu" :class='[t1,t2]'>HELLO</h2>
+
+        <!--动态绑定class的对象写法，适用于: class名已知，但具体加不加样式要动态判断 -->
+        <h2 class="atguigu" :class="{demo1:hasD1,demo2:hasD2}">HELLO</h2>
+        <!-- 动态绑定style样式 -->
+        <h2 class="atguigu" :class="{demo1:hasD1,demo2:hasD2}" :style="{fontSize:size}">HELLO</h2>
+    </div>
+    <script>
+        Vue.config.productionTip = false
+        new Vue({
+            el:"#root",
+            data:{
+                hasD1:true,
+                hasD2:true,
+                t1:'demo1',
+                t2:'demo2',
+                t3:'demo3',
+                size:'50px'
+            },
+            
+        })
+    </script>
+</body>
+</html>

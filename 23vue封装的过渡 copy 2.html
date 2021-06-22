@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        img{
+            width: 300px;
+        }
+        .pingguo-leave-active{
+            animation: atguigu 1s linear;
+        }
+        .pingguo-enter-active{
+            animation: atguigu 1s linear reverse;
+        }
+        @keyframes atguigu{
+            0%{
+                transform: scale(1);
+            }
+            50%{
+                transform: scale(1.5);
+            }
+            100%{
+                transform: scale(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <button @click='isShow = !isShow'>切换</button><br/><br/><br/><br/><br/>
+        <transition name='pingguo'>
+        <img v-show='isShow' src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.goobai.com%2Fzhidao%2Fdata%2Fattach%2F200723%2FIOaDNQ3z.jpg&refer=http%3A%2F%2Fwww.goobai.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1624433066&t=060683abdbb2b7b4ae278d1f5ae0b339" alt="">
+        </transition>
+    </div>
+    <script>
+        Vue.config.productionTip = false
+        new Vue({
+            el:"#root",
+            data:{
+               isShow:true
+            },
+            
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        img{
+            width: 300px;
+        }
+        /* 离开的起点、来的终点 */
+        .fengche-leave,.fengche-enter-to{
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+        }
+        /* 离开的终点、来的起点 */
+        .fengche-leave-to,.fengche-enter{
+            opacity: 0;
+            transform: scale(0) rotate(180deg);
+        }
+        /* 离开、来的过程 */
+        .fengche-leave-active,.fengche-enter-active{
+            transition: 1s all linear;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <button @click='isShow = !isShow'>切换</button><br/>
+        <transition name='fengche'>
+        <img v-show='isShow' src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic.51yuansu.com%2Fpic2%2Fcover%2F00%2F35%2F82%2F5811b43c3bea7_610.jpg&refer=http%3A%2F%2Fpic.51yuansu.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1624431395&t=44fbf2a544822aff2d9fd46f202d4ad5" alt="">
+        </transition>
+    </div>
+    <script>
+        Vue.config.productionTip = false
+        new Vue({
+            el:"#root",
+            data:{
+               isShow:true
+            },
+            
+        })
+    </script>
+</body>
+</html>
